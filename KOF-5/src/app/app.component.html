@@ -1,0 +1,57 @@
+<main>
+  <button type="button" class="btn btn-danger" (click)="countCategory()">CountCategory</button>
+  <button type="button" class="btn btn-danger" (click)="maxDiscount()">MaxDiscount</button>
+  <button type="button" class="btn btn-danger" (click)="priceLevel()">PriceLevel</button>
+  <div class="alert alert-primary alert-dismissible fade show" role="alert" *ngIf="selectedProduct.id !== 0">
+    <div>
+      <img [src]="selectedProduct.thumbnail">
+      <div>{{ selectedProduct.id }}</div>
+      <div>{{ selectedProduct.title }}</div>
+      <div>{{ selectedProduct.description }}</div>
+      <div>{{ selectedProduct.price }}</div>
+      <div>{{ selectedProduct.discountPercentage }}</div>
+      <div>{{ selectedProduct.rating }}</div>
+      <div>{{ selectedProduct.stock }}</div>
+      <div>{{ selectedProduct.brand }}</div>
+      <div>{{ selectedProduct.category }}</div>
+      <div class="container">
+        <div class="row">
+          <div *ngFor="let img of selectedProduct.images" class="col">
+            <img [src]="img">
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="close()"></button>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Thumbnail</th>
+        <th scope="col">Title</th>
+        <th scope="col">Price</th>
+        <th scope="col">Discount Percentage</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Category</th>
+        <th scope="col">Actions</th>
+      </tr>        
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products" [ngClass]="colorType(p)">
+        <th scope="row">{{ p.id }}</th>
+        <td><img [src]="p.thumbnail"/></td>
+        <td>{{ p.title }}</td>
+        <td>{{ p.price }}</td>
+        <td>{{ p.discountPercentage }}</td>
+        <td>{{ p.rating }}</td>
+        <td>{{ p.stock }}</td>
+        <td>{{ p.brand }}</td>
+        <td>{{ p.category }}</td>
+        <td><button type="button" class="btn btn-warning" (click)="deleteProduct(p)">DELETE</button> | <button type="button" class="btn btn-warning" (click)="select(p)">MORE</button></td>
+      </tr>
+    </tbody>
+  </table>
+</main>
